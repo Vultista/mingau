@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="buscador.css">
+    <title>Buscador</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #000; /* Fundo preto */
+            color: #fff; /* Texto branco */
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #333;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid #444;
+        }
+        .header h1 {
+            margin: 0;
+            color: #fff;
+        }
+        .buscador {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .pesquisa input[type="text"] {
+            padding: 10px;
+            width: 60%;
+            font-size: 16px;
+            border: 1px solid #555;
+            background-color: #222;
+            color: #fff;
+        }
+        .pesquisa button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        .pesquisa button:hover {
+            background-color: #777;
+        }
+        .filmes ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .filmes li {
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+        }
+        .filmes img {
+            width: 100px;
+            height: auto;
+            margin-right: 20px;
+        }
+        .filmes a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .filmes a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Bem-vindo ao Buscador de Filmes</h1>
+    </div>
+
+    <div class="buscador">
+        <form action="" method="submit" class="pesquisa">
+            <input type="text" name="buscador" value="" placeholder="O que vamos ver hoje?" id="buscar" onkeyup="pesquisa()">
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+    <div class="filmes">
+        <ul id="disponiveis">
+            <li>
+                <img src="imagens/soldado-ryan.jpg" alt="Soldado Ryan">
+                <a href="https://youtu.be/w1teYVq5UFE?si=8sVMhjIToVFqiKSb" target="_blank">Soldado Ryan</a>
+            </li>
+            <li>
+                <img src="imagens/rambo.jpg" alt="Rambo">
+                <a href="https://youtu.be/2CRjdwRYQbU?si=BI6uGOA_ewbzdfl1" target="_blank">Rambo</a>
+            </li>
+            <li>
+                <img src="imagens/vingadores.jpg" alt="Vingadores">
+                <a href="https://youtu.be/KeNEGtsCWEk?si=D8_bB8XdV9zV4QHH" target="_blank">Vingadores</a>
+            </li>
+            <li>
+                <img src="imagens/o-homem-que-copiava.jpg" alt="O Homem que Copiava">
+                <a href="https://youtu.be/-HILhhhGb9w?si=OPWu84IIH1UxiKG8" target="_blank">O homem que copiava</a>
+            </li>
+            <li>
+                <img src="imagens/legalmente-loira.jpg" alt="Legalmente Loira">
+                <a href="https://youtu.be/I4GmyuiBkjc?si=zVLpNpBW1L6QqJhG" target="_blank">Legalmente Loira</a>
+            </li>
+            <li>
+                <img src="imagens/jurassic-park.jpg" alt="Jurassic Park">
+                <a href="https://youtu.be/fLDR-YYK7jQ?si=_PYw8jsMEnmcAHZh" target="_blank">Jurassic Park</a>
+            </li>
+            <li>
+                <img src="imagens/o-pianista.jpg" alt="O Pianista">
+                <a href="https://youtu.be/BFwGqLa_oAo?si=87wyL6cnTXtWh6-H" target="_blank">O pianista</a>
+            </li>
+            <li>
+                <img src="imagens/imperio-do-sol.jpg" alt="Império do Sol">
+                <a href="https://youtu.be/i_WiDVA1kLY?si=esuKYwZ5t5ikEAWo" target="_blank">Império do Sol</a>
+            </li>
+            <li>
+                <img src="imagens/alladin.jpg" alt="Alladin">
+                <a href="https://youtu.be/PRyOvcOhtms?si=et0_SQH4bNCvIVPS" target="_blank">Alladin</a>
+            </li>
+            <li>
+                <img src="imagens/speed-racer.jpg" alt="Speed Racer">
+                <a href="https://youtu.be/8V8sLlqJB2w?si=vQhNdb-qUCi6_0Hc" target="_blank">Speed Racer</a>
+            </li>
+            <li>
+                <img src="imagens/circulo-de-fogo.jpg" alt="Círculo de Fogo">
+                <a href="https://youtu.be/_Nat1oQup5M?si=QPheKr81w46zPQHX" target="_blank">Círculo de Fogo</a>
+            </li>
+        </ul>
+    </div>
+    <script src="pesquisa.js"></script>
+
+</body>
+
+</html>
