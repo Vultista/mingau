@@ -66,12 +66,6 @@
             align-items: center;
         }
 
-        .filmes img {
-            width: 250px; /* Tamanho médio */
-            height: auto; /* Mantém a proporção original */
-            margin-right: 20px;
-        }
-
         .filmes a {
             color: #fff;
             text-decoration: none;
@@ -100,16 +94,40 @@
     <div class="filmes">
         <ul id="disponiveis">
             <li>
-                <img src="imagens/soldado_ryan.jpg" alt="Soldado Ryan">
                 <a href="https://youtu.be/w1teYVq5UFE?si=8sVMhjIToVFqiKSb" target="_blank">Soldado Ryan</a>
             </li>
             <li>
-                <img src="imagens/rambo.jpg" alt="Rambo">
                 <a href="https://youtu.be/2CRjdwRYQbU?si=BI6uGOA_ewbzdfl1" target="_blank">Rambo</a>
             </li>
             <li>
-                <img src="imagens/vingadores.jpg" alt="Vingadores">
                 <a href="https://youtu.be/KeNEGtsCWEk?si=D8_bB8XdV9zV4QHH" target="_blank">Vingadores</a>
+            </li>
+            <li>
+                <a href="https://youtu.be/-HILhhhGb9w?si=OPWu84IIH1UxiKG8" target="_blank">O Homem que Copiava</a>
+            </li>
+            <li>
+                <a href="https://youtu.be/I4GmyuiBkjc?si=zVLpNpBW1L6QqJhG" target="_blank">Legalmente Loira</a>
+            </li>
+            <li>
+                <a href="https://youtu.be/fLDR-YYK7jQ?si=_PYw8jsMEnmcAHZh" target="_blank">Jurassic Park</a>
+            </li>
+            <li>
+                <a href="https://youtu.be/BFwGqLa_oAo?si=87wyL6cnTXtWh6-H" target="_blank">O Pianista</a>
+            </li>
+            <li>
+                <a href="https://youtu.be/i_WiDVA1kLY?si=esuKYwZ5t5ikEAWo" target="_blank">Império do Sol</a>
+            </li>
+            <li>
+                <a href="https://youtu.be/52SCvX8VZ4c?si=X9nrujbIn79qKwYK" target="_blank">13 Horas</a>
+            </li>
+            <li>
+                <a href="https://youtu.be/PRyOvcOhtms?si=et0_SQH4bNCvIVPS" target="_blank">Aladdin</a>
+            </li>
+            <li>
+                <a href="https://youtu.be/8V8sLlqJB2w?si=vQhNdb-qUCi6_0Hc" target="_blank">Speed Racer</a>
+            </li>
+            <li>
+                <a href="https://youtu.be/_Nat1oQup5M?si=QPheKr81w46zPQHX" target="_blank">Círculo de Fogo</a>
             </li>
         </ul>
     </div>
