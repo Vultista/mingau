@@ -1,3 +1,10 @@
+//Componentes:
+Arduino Uno
+Teclado Matricial (4x4)
+Display LCD (opcional, mas recomendado para exibir os resultados)
+Jumpers e uma protoboard
+
+
 #include <Keypad.h>
 #include <LiquidCrystal.h>
 
