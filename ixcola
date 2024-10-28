@@ -1,138 +1,100 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+#include <Keypad.h>
+#include <LiquidCrystal.h>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="buscador.css">
-    <title>Buscador</title>
-    <style>
-        body {
-            font-family: 'Times New Roman', serif;
-            background-color: #000; /* Fundo preto */
-            color: #fff; /* Texto branco */
-            margin: 0;
-            padding: 0;
+// Configuração do teclado matricial
+const byte ROWS = 4; // Quatro linhas
+const byte COLS = 4; // Quatro colunas
+char keys[ROWS][COLS] = {
+  {'1', '2', '3', 'A'},
+  {'4', '5', '6', 'B'},
+  {'7', '8', '9', 'C'},
+  {'*', '0', '#', 'D'}
+};
+byte rowPins[ROWS] = {9, 8, 7, 6}; // Pinos das linhas
+byte colPins[COLS] = {5, 4, 3, 2}; // Pinos das colunas
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+
+// Configuração do LCD (opcional)
+LiquidCrystal lcd(12, 11, 5, 4, 3, 2);
+
+float num1 = 0;
+float num2 = 0;
+char operation = ' ';
+
+void setup() {
+    // Inicializa o LCD
+    lcd.begin(16, 2);
+    lcd.print("Calculadora");
+}
+
+void loop() {
+    char key = keypad.getKey();
+
+    if (key) {
+        if (key >= '0' && key <= '9') {
+            // Se um número é pressionado
+            if (operation == ' ') {
+                num1 = num1 * 10 + (key - '0'); // Forma o primeiro número
+                lcd.setCursor(0, 1);
+                lcd.print(num1);
+            } else {
+                num2 = num2 * 10 + (key - '0'); // Forma o segundo número
+                lcd.setCursor(0, 1);
+                lcd.print(num2);
+            }
+        } else if (key == 'A') { // Adição
+            operation = '+';
+            lcd.setCursor(0, 0);
+            lcd.print("Adicao");
+        } else if (key == 'B') { // Subtração
+            operation = '-';
+            lcd.setCursor(0, 0);
+            lcd.print("Subtracao");
+        } else if (key == 'C') { // Multiplicação
+            operation = '*';
+            lcd.setCursor(0, 0);
+            lcd.print("Multiplicacao");
+        } else if (key == 'D') { // Divisão
+            operation = '/';
+            lcd.setCursor(0, 0);
+            lcd.print("Divisao");
+        } else if (key == '#') { // Calcular resultado
+            float result = calculate(num1, num2, operation);
+            lcd.clear();
+            lcd.setCursor(0, 0);
+            lcd.print("Resultado:");
+            lcd.setCursor(0, 1);
+            lcd.print(result);
+
+            // Resetar os valores
+            num1 = 0;
+            num2 = 0;
+            operation = ' ';
+            delay(3000);
+            lcd.clear();
+            lcd.print("Calculadora");
+        } else if (key == '*') { // Limpar
+            num1 = 0;
+            num2 = 0;
+            operation = ' ';
+            lcd.clear();
+            lcd.print("Calculadora");
         }
+    }
+}
 
-        .header {
-            background-color: #333;
-            padding: 20px;
-            text-align: center;
-            border-bottom: 1px solid #444;
-        }
-
-        .header h1 {
-            margin: 0;
-            color: #fff;
-        }
-
-        .buscador {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .pesquisa input[type="text"] {
-            padding: 10px;
-            width: 60%;
-            font-size: 16px;
-            border: 1px solid #555;
-            background-color: #222;
-            color: #fff;
-        }
-
-        .pesquisa button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background-color: #555;
-            color: #fff;
-            border: none;
-            cursor: pointer;
-        }
-
-        .pesquisa button:hover {
-            background-color: #777;
-        }
-
-        .filmes ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .filmes li {
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-        }
-
-        .filmes a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-        }
-
-        .filmes a:hover {
-            text-decoration: underline;
-        }
-    </style>
-</head>
-
-<body>
-    <div class="header">
-        <h1>Bem-vindo ao Buscador de Filmes</h1>
-    </div>
-
-    <div class="buscador">
-        <form action="" method="submit" class="pesquisa">
-            <input type="text" name="buscador" value="" placeholder="O que vamos ver hoje?" id="buscar"
-                onkeyup="pesquisa()">
-            <button type="submit">Enviar</button>
-        </form>
-    </div>
-
-    <div class="filmes">
-        <ul id="disponiveis">
-            <li>
-                <a href="https://youtu.be/w1teYVq5UFE?si=8sVMhjIToVFqiKSb" target="_blank">Soldado Ryan</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/2CRjdwRYQbU?si=BI6uGOA_ewbzdfl1" target="_blank">Rambo</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/KeNEGtsCWEk?si=D8_bB8XdV9zV4QHH" target="_blank">Vingadores</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/-HILhhhGb9w?si=OPWu84IIH1UxiKG8" target="_blank">O Homem que Copiava</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/I4GmyuiBkjc?si=zVLpNpBW1L6QqJhG" target="_blank">Legalmente Loira</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/fLDR-YYK7jQ?si=_PYw8jsMEnmcAHZh" target="_blank">Jurassic Park</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/BFwGqLa_oAo?si=87wyL6cnTXtWh6-H" target="_blank">O Pianista</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/i_WiDVA1kLY?si=esuKYwZ5t5ikEAWo" target="_blank">Império do Sol</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/52SCvX8VZ4c?si=X9nrujbIn79qKwYK" target="_blank">13 Horas</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/PRyOvcOhtms?si=et0_SQH4bNCvIVPS" target="_blank">Aladdin</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/8V8sLlqJB2w?si=vQhNdb-qUCi6_0Hc" target="_blank">Speed Racer</a>
-            </li>
-            <li>
-                <a href="https://youtu.be/_Nat1oQup5M?si=QPheKr81w46zPQHX" target="_blank">Círculo de Fogo</a>
-            </li>
-        </ul>
-    </div>
-    <script src="pesquisa.js"></script>
-
-</body>
-
-</html>
+float calculate(float n1, float n2, char op) {
+    switch (op) {
+        case '+':
+            return n1 + n2;
+        case '-':
+            return n1 - n2;
+        case '*':
+            return n1 * n2;
+        case '/':
+            if (n2 != 0) return n1 / n2;
+            else return 0; // Divisão por zero
+        default:
+            return 0;
+    }
+}
